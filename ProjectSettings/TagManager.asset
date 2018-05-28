@@ -14,6 +14,7 @@ TagManager:
   - Hitbox
   - Demo
   - GameManager
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

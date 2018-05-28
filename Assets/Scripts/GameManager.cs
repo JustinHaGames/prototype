@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour {
 
 		//Finds the player on the scene and gets its script 
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		Movement playerScript = player.GetComponent<Movement> ();
+		NSMMovement playerScript = player.GetComponent<NSMMovement> ();
 
 		//If player is hit with a bullet, Game Over
 		if (playerScript.playerDead) {
