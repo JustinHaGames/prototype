@@ -19,7 +19,7 @@ public class CamControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Debug.Log (truePos);
+		//Debug.Log (truePos);
 		if (shakeTimer > 0 ) {
 			transform.localPosition = truePos + Random.insideUnitSphere * shakeIntensity;
 			shakeTimer -= Time.deltaTime;

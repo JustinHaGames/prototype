@@ -29,6 +29,7 @@ public class Gun : MonoBehaviour {
 	// Update is called once per frame
 	void Update (){
 		//If the left click on the mouse is pressed, shot becomes true instantiating a bullet
+        /*
 		if (Input.GetMouseButtonDown (0) && bulletCount != 0) {		
 			mainCamera.SendMessage ("shake", null, SendMessageOptions.DontRequireReceiver); 	
 			shot = true; 
@@ -49,6 +50,7 @@ public class Gun : MonoBehaviour {
 
 		//Ta Daaa
 		transform.rotation = Quaternion.Euler (new Vector3 (0f, 0f, angle));
+        */
 	}
 
 	void FixedUpdate(){

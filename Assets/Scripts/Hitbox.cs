@@ -18,26 +18,29 @@ public class Hitbox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if ((Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.RightArrow))  && canAttack == true) {
-			hitboxRight.SetActive (true);
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 playerPos = Camera.main.WorldToScreenPoint(transform.position);
+        float distX = Mathf.Abs(playerPos.x - mousePos.x);
+        float distY = Mathf.Abs(playerPos.y - mousePos.y);
+        if (distX > distY && Input.GetMouseButtonDown(0) && mousePos.x > playerPos.x && canAttack == true){//((Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.RightArrow))  && canAttack == true) {
+            hitboxRight.SetActive (true);
 			canAttack = false;
 			StartCoroutine (HitboxActive ());
 		}
 
-		if ((Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.LeftArrow)) && canAttack == true) {
-			hitboxLeft.SetActive (true);
+		if (distX > distY && Input.GetMouseButtonDown(0) && mousePos.x < playerPos.x && canAttack == true){//((Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.LeftArrow)) && canAttack == true) {
+            hitboxLeft.SetActive (true);
 			canAttack = false;
 			StartCoroutine (HitboxActive ());
 		}
 
-		if ((Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.UpArrow)) && canAttack == true) {
-			hitboxUp.SetActive (true); 
+		if (distX < distY && Input.GetMouseButtonDown(0) && mousePos.y > playerPos.y && canAttack == true){//((Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.UpArrow)) && canAttack == true) {
+            hitboxUp.SetActive (true); 
 			canAttack = false;
 			StartCoroutine (HitboxActive ());
 		}
 
-		if ((Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.DownArrow)) && canAttack == true) {
+		if (distX < distY && Input.GetMouseButtonDown(0) && mousePos.y < playerPos.y && canAttack == true){//((Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.DownArrow)) && canAttack == true) {
 			hitboxDown.SetActive (true);
 			canAttack = false;
 			StartCoroutine (HitboxActive ());
