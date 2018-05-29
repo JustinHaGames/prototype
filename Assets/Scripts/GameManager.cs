@@ -110,21 +110,6 @@ public class GameManager : MonoBehaviour {
 			clockText.text = "" + Mathf.FloorToInt (clock); 
 		}
 
-		//Finds the target in the scene and gets the scripts
-		GameObject target = GameObject.FindGameObjectWithTag ("Target");
-		Target targetScript = target.GetComponent<Target> ();
-
-		//If target was hit with a bullet, add 1 point
-		if (targetScript.bulletHit) {
-			audioSource.PlayOneShot (targetHit, .7f);
-			score += 1; 
-		}
-		//If target was hit with a hitbox/melee attack, add 1 point
-		if (targetScript.hitboxHit) {
-			audioSource.PlayOneShot (targetHit, .7f);
-			score += 1; 
-		}
-
 		//Goes into the gun script and plays the the gunshot sound effect when gun is shot. Also changes the audio clip depending on the bulletCount
 		if (gunscript.shotsound && gunscript.bulletCount > 2f) {
 			audioSource.PlayOneShot (shotSound, .4f); 

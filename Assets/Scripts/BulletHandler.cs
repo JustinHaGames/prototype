@@ -5,9 +5,10 @@ using UnityEngine;
 public class BulletHandler : MonoBehaviour {
 
 	public Vector3 direction;
-	public bool isReflected = false;
 
 	public float bulletSpeed;
+
+	private int lifeTimer = 0; 
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,13 @@ public class BulletHandler : MonoBehaviour {
 	void Update() {
 		transform.position += direction * bulletSpeed * Time.deltaTime; //move bullet toward the player's position
 
+		lifeTimer += 1; 
+
+		if (lifeTimer >= 300)
+		{
+			Destroy (gameObject);
+		}
+
 		if (transform.position.x >= 20 || transform.position.y >= 15 || transform.position.x <= -20 || transform.position.y <= -15)
 		{
 			Destroy(gameObject);
@@ -26,19 +34,16 @@ public class BulletHandler : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if (col.gameObject.tag == "HitboxX" || col.gameObject.tag == "HitboxY")
+		if (col.gameObject.tag == "HitboxX" || col.gameObject.tag == "Wall")
 		{
-			bool isDash = GameObject.Find("Player").GetComponent<NSMMovement>().isDashing;
-			//if (isDash)
-			//{
-				direction = -direction;
-				isReflected = true;
-			//}
-			//else
-			//{
-				//Destroy(gameObject);
-			//}
+			direction.x *= -1;
 		}
+
+		if (col.gameObject.tag == "HitboxY" || col.gameObject.tag == "Roof")
+		{
+			direction.y *= -1; 
+		}
+
 		if (col.gameObject.tag == "Player")
 		{
 			//TODO: handle player's death/damage or handle this elsewhere
